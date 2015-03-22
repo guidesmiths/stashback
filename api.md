@@ -18,7 +18,7 @@ Returns a configured stashback object
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| options.timeout | <code>integer</code> | Callback timeout in milliesconds |
+| options.timeout | <code>milliseconds</code> | This timeout is applied to the callback being stashed. If the timeout is exceeded the callback is executed with an error object. |
 | options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters. |
 | options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters. |
 | options.onExpiry | <code>function</code> | Function to be executed after expiring a key. Will be invoked with the key and callback to be expired. |
@@ -34,6 +34,7 @@ Stashes a callback for subsequent retrieval
 | key | <code>String</code> | The callback id |
 | callback | <code>function</code> | The callback to be stashed |
 | options | <code>Object</code> |  |
+| options.timeout | <code>milliseconds</code> | This timeout is applied to the callback being stashed. If the timeout is exceeded the callback is executed with an error object. |
 | options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters. |
 | options.onExpiry | <code>function</code> | Function to be executed after expiring a key. Will be invoked with the key and next parameters. |
 | next | <code>callback</code> | Callback which will be invoked with the error object |

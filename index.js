@@ -10,11 +10,11 @@ var _ = require('lodash')
 
 /**
  * Returns a configured stashback object
- * @param {Object} options
- * @param {integer} options.timeout            Callback timeout in milliesconds
- * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters.
- * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters.
- * @param {function} options.onExpiry          Function to be executed after expiring a key. Will be invoked with the key and callback to be expired.
+ * @param {Object}       options
+ * @param {milliseconds} options.timeout           This timeout is applied to the callback being stashed. If the timeout is exceeded the callback is executed with an error object.
+ * @param {function}     options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters.
+ * @param {function}     options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters.
+ * @param {function}     options.onExpiry          Function to be executed after expiring a key. Will be invoked with the key and callback to be expired.
  */
 module.exports = function(overrides) {
 
@@ -97,12 +97,13 @@ module.exports = function(overrides) {
     return {
         /**
          * Stashes a callback for subsequent retrieval
-         * @param {String}   key                       The callback id
-         * @param {function} callback                  The callback to be stashed
-         * @param {Object}   options
-         * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters.
-         * @param {function} options.onExpiry          Function to be executed after expiring a key. Will be invoked with the key and next parameters.
-         * @param {callback} next                      Callback which will be invoked with the error object
+         * @param {String}       key                       The callback id
+         * @param {function}     callback                  The callback to be stashed
+         * @param {Object}       options
+         * @param {milliseconds} options.timeout           This timeout is applied to the callback being stashed. If the timeout is exceeded the callback is executed with an error object.
+         * @param {function}     options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters.
+         * @param {function}     options.onExpiry          Function to be executed after expiring a key. Will be invoked with the key and next parameters.
+         * @param {callback}     next                      Callback which will be invoked with the error object
          */
         stash: stash,
 
