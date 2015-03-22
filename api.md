@@ -19,9 +19,9 @@ Returns a configured stashback object
 | --- | --- | --- |
 | options | <code>Object</code> |  |
 | options.timeout | <code>integer</code> | Callback timeout in milliesconds |
-| options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. |
-| options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. |
-| options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
+| options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters. |
+| options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters. |
+| options.onExpiry | <code>function</code> | Function to be executed after expiring a key. Will be invoked with the key and callback to be expired. |
 
 <a name="module_stashback--module.exports..stash"></a>
 #### module.exports~stash
@@ -34,9 +34,9 @@ Stashes a callback for subsequent retrieval
 | key | <code>String</code> | The callback id |
 | callback | <code>function</code> | The callback to be stashed |
 | options | <code>Object</code> |  |
-| options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. |
-| options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
-| next | <code>callback</code> | Callback which will be excuted with the error object |
+| options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters. |
+| options.onExpiry | <code>function</code> | Function to be executed after expiring a key. Will be invoked with the key and next parameters. |
+| next | <code>callback</code> | Callback which will be invoked with the error object |
 
 <a name="module_stashback--module.exports..unstash"></a>
 #### module.exports~unstash
@@ -48,9 +48,8 @@ Unstashes a callback for execution
 | --- | --- | --- |
 | key | <code>String</code> | The callback id |
 | options | <code>Object</code> |  |
-| options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. |
-| options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
-| next | <code>callback</code> | Callback which will be executed with the error object and the callback (or no-op function if the callback was not found or has expired) |
+| options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters. |
+| next | <code>callback</code> | Callback which will be invoked with the error object and the callback (or no-op function if the callback was not found or has expired). |
 
 <a name="module_stashback--module.exports..stats"></a>
 #### module.exports~stats ⇒ <code>Object</code>

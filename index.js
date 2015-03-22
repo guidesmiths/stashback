@@ -12,9 +12,9 @@ var _ = require('lodash')
  * Returns a configured stashback object
  * @param {Object} options
  * @param {integer} options.timeout            Callback timeout in milliesconds
- * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key.
- * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key.
- * @param {function} options.onExpiry          Function to be executed after expiring a key.
+ * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters.
+ * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters.
+ * @param {function} options.onExpiry          Function to be executed after expiring a key. Will be invoked with the key and callback to be expired.
  */
 module.exports = function(overrides) {
 
@@ -100,9 +100,9 @@ module.exports = function(overrides) {
          * @param {String}   key                       The callback id
          * @param {function} callback                  The callback to be stashed
          * @param {Object}   options
-         * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key.
-         * @param {function} options.onExpiry          Function to be executed after expiring a key.
-         * @param {callback} next                      Callback which will be excuted with the error object
+         * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Will be invoked with the key and next parameters.
+         * @param {function} options.onExpiry          Function to be executed after expiring a key. Will be invoked with the key and next parameters.
+         * @param {callback} next                      Callback which will be invoked with the error object
          */
         stash: stash,
 
@@ -110,9 +110,8 @@ module.exports = function(overrides) {
          * Unstashes a callback for execution
          * @param {String}   key                       The callback id
          * @param {Object}   options
-         * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key.
-         * @param {function} options.onExpiry          Function to be executed after expiring a key.
-         * @param {callback} next                      Callback which will be executed with the error object and the callback (or no-op function if the callback was not found or has expired)
+         * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters.
+         * @param {callback} next                      Callback which will be invoked with the error object and the callback (or no-op function if the callback was not found or has expired).
          */
         unstash: unstash,
 
