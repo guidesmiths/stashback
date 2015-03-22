@@ -102,7 +102,7 @@ module.exports = function(overrides) {
          * @param {Object}   options
          * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key.
          * @param {function} options.onExpiry          Function to be executed after expiring a key.
-         * @param {callback} next
+         * @param {callback} next                      Callback which will be excuted with the error object
          */
         stash: stash,
 
@@ -112,7 +112,7 @@ module.exports = function(overrides) {
          * @param {Object}   options
          * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key.
          * @param {function} options.onExpiry          Function to be executed after expiring a key.
-         * @param {callback}
+         * @param {callback} next                      Callback which will be executed with the error object and the callback (or no-op function if the callback was not found or has expired)
          */
         unstash: unstash,
 

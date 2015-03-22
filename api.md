@@ -36,7 +36,7 @@ Stashes a callback for subsequent retrieval
 | options | <code>Object</code> |  |
 | options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. |
 | options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
-| next | <code>callback</code> |  |
+| next | <code>callback</code> | Callback which will be excuted with the error object |
 
 <a name="module_stashback--module.exports..unstash"></a>
 #### module.exports~unstash
@@ -50,7 +50,7 @@ Unstashes a callback for execution
 | options | <code>Object</code> |  |
 | options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. |
 | options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
-|  | <code>callback</code> |  |
+| next | <code>callback</code> | Callback which will be executed with the error object and the callback (or no-op function if the callback was not found or has expired) |
 
 <a name="module_stashback--module.exports..stats"></a>
 #### module.exports~stats ⇒ <code>Object</code>
