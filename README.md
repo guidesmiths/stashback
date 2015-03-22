@@ -1,4 +1,8 @@
-### Stashback
+## Stashback
+[![Build Status](https://travis-ci.org/guidesmiths/stashback.svg?branch=master)](https://travis-ci.org/guidesmiths/stashback)
+
+[![NPM](https://nodei.co/npm/stashback.png?downloads=true)](https://nodei.co/npm/stashback/)
+
 Stashback is a library for stashing and retrieving callbacks in a decoupled request/response workflow. Its primary use case is to enable code within an http request/response sequence to publish a message to an ESB, e.g. [RabbitMQ](http://www.rabbitmq.com/) and wait for a reply.
 
 ### Installation
