@@ -1,0 +1,34 @@
+{
+  "name": "stashback",
+  "version": "0.1.0",
+  "description": "Stashes callbacks for later execution",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --expose-gc tests/testsuite.js",
+    "example": "( cd example; node app.js )",
+    "lint": "eslint index.js",
+    "doc": "jsdoc2md index.js > api.md"
+  },
+  "keywords": [
+    "callback",
+    "manager",
+    "stash",
+    "timeout",
+    "once"
+  ],
+  "author": "Stephen Cresswell",
+  "license": "ISC",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "chance": "^0.7.3",
+    "express": "^4.12.3",
+    "memwatch": "^0.2.2",
+    "node-uuid": "^1.4.3",
+    "redtape": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "dependencies": {
+    "debug": "^2.1.3",
+    "lodash": "^3.5.0"
+  }
+}
