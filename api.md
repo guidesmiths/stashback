@@ -7,7 +7,7 @@ A library for stashing and retrieving callbacks
   * [module.exports(options)](#exp_module_stashback--module.exports) ⏏
     * [~stash](#module_stashback--module.exports..stash)
     * [~unstash](#module_stashback--module.exports..unstash)
-    * [~stats](#module_stashback--module.exports..stats) ⇒ <code>Object</code> \| <code>integer</code> \| <code>integer</code>
+    * [~stats](#module_stashback--module.exports..stats) ⇒ <code>Object</code>
 
 <a name="exp_module_stashback--module.exports"></a>
 ### module.exports(options) ⏏
@@ -53,8 +53,8 @@ Unstashes a callback for execution
 |  | <code>callback</code> |  |
 
 <a name="module_stashback--module.exports..stats"></a>
-#### module.exports~stats ⇒ <code>Object</code> \| <code>integer</code> \| <code>integer</code>
+#### module.exports~stats ⇒ <code>Object</code>
 Provides statistics
 
 **Kind**: inner property of <code>[module.exports](#exp_module_stashback--module.exports)</code>  
-**Returns**: <code>Object</code> - stats             An object<code>integer</code> - stats.stashed     The number of currently stashed callbacks<code>integer</code> - stats.expired     The number of expired callbacks  
+**Returns**: <code>Object</code> - stats                 An object containing the number of stashed and expired callbacks  

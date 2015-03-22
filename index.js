@@ -118,9 +118,7 @@ module.exports = function(overrides) {
 
         /**
          * Provides statistics
-         * @returns {Object}     stats             An object
-         * @returns {integer}    stats.stashed     The number of currently stashed callbacks
-         * @returns {integer}    stats.expired     The number of expired callbacks
+         * @returns {Object}     stats                 An object containing the number of stashed and expired callbacks
          */
         stats: stats
     }

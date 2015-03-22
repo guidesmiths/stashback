@@ -60,3 +60,4 @@ stashback.unstash('never-stashed-or-expired', function(err, callback) {
 ### Further Customisation
 You can further customise stashback's behaviour by providing your own onDuplicateKey, onUnknownKey and onExpiry handlers. See the [api](api/index.md) for more details.
 
+
