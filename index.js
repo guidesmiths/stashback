@@ -12,9 +12,9 @@ var _ = require('lodash')
  * Returns a configured stashback object
  * @param {Object} options
  * @param {integer} options.timeout            Callback timeout in milliesconds
- * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key. Must be bound to the stashback instance
- * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Must be bound to the stashback instance
- * @param {function} options.onExpiry          Function to be executed after expiring a key. Must be bound to the stashback instance
+ * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key.
+ * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key.
+ * @param {function} options.onExpiry          Function to be executed after expiring a key.
  */
 module.exports = function(overrides) {
 
@@ -26,16 +26,6 @@ module.exports = function(overrides) {
         onExpiry: onExpiry
     })
 
-    /**
-     * Stashes a callback for subsequent retrieval
-     * @param {String}   key
-     * @param {function} callback
-     * @param {Object}   options
-     * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key. Must be bound to the stashback instance
-     * @param {function} options.onExpiry          Function to be executed after expiring a key. Must be bound to the stashback instance
-     * @param {callback}
-     * @param {Error}
-     */
     function stash(key, callback, overrides, next) {
         if (arguments.length === 3) return stash(key, callback, {}, arguments[2])
         debug('Stashing', key)
@@ -46,16 +36,6 @@ module.exports = function(overrides) {
         next(null)
     }
 
-    /**
-     * Unstashes a callback for execution
-     * @param {String}   key
-     * @param {Object}   options
-     * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key. Must be bound to the stashback instance
-     * @param {function} options.onExpiry          Function to be executed after expiring a key. Must be bound to the stashback instance
-     * @param {callback}
-     * @param {Error}
-     * @param {function}                           The stashed callback or a no-op callback in the event of an error
-     */
     function unstash(key, overrides, next) {
         if (arguments.length === 2) return unstash(key, {}, arguments[1])
         debug('Unstashing', key)
@@ -107,12 +87,6 @@ module.exports = function(overrides) {
         callback(new Error('Expired by stashback'))
     }
 
-    /**
-     * Provides statistics
-     * @returns {Object}      stats
-     * @returns {integer}     stats.stashed      The number of currently stashed callbacks
-     * @returns {function}    stats.expired      The number of expired callbacks
-     */
     function stats() {
         return {
             stashed: Object.keys(vault).length,
@@ -121,8 +95,33 @@ module.exports = function(overrides) {
     }
 
     return {
+        /**
+         * Stashes a callback for subsequent retrieval
+         * @param {String}   key
+         * @param {function} callback
+         * @param {Object}   options
+         * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key.
+         * @param {function} options.onExpiry          Function to be executed after expiring a key.
+         * @param {callback}
+         */
         stash: stash,
+
+        /**
+         * Unstashes a callback for execution
+         * @param {String}   key
+         * @param {Object}   options
+         * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key.
+         * @param {function} options.onExpiry          Function to be executed after expiring a key.
+         * @param {callback}
+         */
         unstash: unstash,
+
+        /**
+         * Provides statistics
+         * @returns {Object}      stats
+         * @returns {integer}     stats.stashed      The number of currently stashed callbacks
+         * @returns {function}    stats.expired      The number of expired callbacks
+         */
         stats: stats
     }
 }
