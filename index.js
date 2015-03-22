@@ -97,8 +97,8 @@ module.exports = function(overrides) {
     return {
         /**
          * Stashes a callback for subsequent retrieval
-         * @param {String}   key
-         * @param {function} callback
+         * @param {String}   key                       The callback id
+         * @param {function} callback                  The callback to be stashed
          * @param {Object}   options
          * @param {function} options.onDuplicateKey    Function to be executed when instructed to stash a duplicate key.
          * @param {function} options.onExpiry          Function to be executed after expiring a key.
@@ -108,19 +108,19 @@ module.exports = function(overrides) {
 
         /**
          * Unstashes a callback for execution
-         * @param {String}   key
+         * @param {String}   key                       The callback id
          * @param {Object}   options
          * @param {function} options.onUnknownKey      Function to be executed when instructed to unstash an unknown (or expired) key.
          * @param {function} options.onExpiry          Function to be executed after expiring a key.
-         * @param {callback} next
+         * @param {callback}
          */
         unstash: unstash,
 
         /**
          * Provides statistics
-         * @returns {Object}      stats
-         * @returns {integer}     stats.stashed      The number of currently stashed callbacks
-         * @returns {function}    stats.expired      The number of expired callbacks
+         * @returns {Object}     stats             An object
+         * @returns {integer}    stats.stashed     The number of currently stashed callbacks
+         * @returns {integer}    stats.expired     The number of expired callbacks
          */
         stats: stats
     }

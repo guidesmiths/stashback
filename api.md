@@ -7,7 +7,7 @@ A library for stashing and retrieving callbacks
   * [module.exports(options)](#exp_module_stashback--module.exports) ⏏
     * [~stash](#module_stashback--module.exports..stash)
     * [~unstash](#module_stashback--module.exports..unstash)
-    * [~stats](#module_stashback--module.exports..stats) ⇒ <code>Object</code> \| <code>integer</code> \| <code>function</code>
+    * [~stats](#module_stashback--module.exports..stats) ⇒ <code>Object</code> \| <code>integer</code> \| <code>integer</code>
 
 <a name="exp_module_stashback--module.exports"></a>
 ### module.exports(options) ⏏
@@ -31,8 +31,8 @@ Stashes a callback for subsequent retrieval
 
 | Param | Type | Description |
 | --- | --- | --- |
-| key | <code>String</code> |  |
-| callback | <code>function</code> |  |
+| key | <code>String</code> | The callback id |
+| callback | <code>function</code> | The callback to be stashed |
 | options | <code>Object</code> |  |
 | options.onDuplicateKey | <code>function</code> | Function to be executed when instructed to stash a duplicate key. |
 | options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
@@ -46,15 +46,15 @@ Unstashes a callback for execution
 
 | Param | Type | Description |
 | --- | --- | --- |
-| key | <code>String</code> |  |
+| key | <code>String</code> | The callback id |
 | options | <code>Object</code> |  |
 | options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. |
 | options.onExpiry | <code>function</code> | Function to be executed after expiring a key. |
-| next | <code>callback</code> |  |
+|  | <code>callback</code> |  |
 
 <a name="module_stashback--module.exports..stats"></a>
-#### module.exports~stats ⇒ <code>Object</code> \| <code>integer</code> \| <code>function</code>
+#### module.exports~stats ⇒ <code>Object</code> \| <code>integer</code> \| <code>integer</code>
 Provides statistics
 
 **Kind**: inner property of <code>[module.exports](#exp_module_stashback--module.exports)</code>  
-**Returns**: <code>Object</code> - stats<code>integer</code> - stats.stashed      The number of currently stashed callbacks<code>function</code> - stats.expired      The number of expired callbacks  
+**Returns**: <code>Object</code> - stats             An object<code>integer</code> - stats.stashed     The number of currently stashed callbacks<code>integer</code> - stats.expired     The number of expired callbacks  
