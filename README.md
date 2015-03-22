@@ -35,7 +35,6 @@ app.listen(3000)
 
 function publish(message) {
     // Publish the message to the ESB
-    // ...
 }
 
 function onMessage(message) {
