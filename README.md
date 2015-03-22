@@ -44,7 +44,7 @@ function onMessage(message) {
 ```
 
 ### Callback Expiry
-In order to prevent a slow memory leak and to abort slow running requests it's a good idea to configure stashback with a timeout. This can be done globally and for each 'stash' operation. See the [api](api/index.md) for more details.
+In order to prevent a slow memory leak and to abort slow running requests it's a good idea to configure stashback with a timeout. This can be done globally and for each 'stash' operation. See the [api](api.md) for more details.
 
 
 ### Duplicates
@@ -58,6 +58,6 @@ stashback.unstash('never-stashed-or-expired', function(err, callback) {
 ```
 
 ### Further Customisation
-You can further customise stashback's behaviour by providing your own onDuplicateKey, onUnknownKey and onExpiry handlers. See the [api](api/index.md) for more details.
+You can further customise stashback's behaviour by providing your own onDuplicateKey, onUnknownKey and onExpiry handlers. See the [api](api.md) for more details.
 
 
