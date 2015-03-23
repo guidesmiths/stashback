@@ -10,8 +10,9 @@ Stashback is a library for stashing and retrieving callbacks in a decoupled requ
 npm install stashback
 ```
 
-### Usage
+### Example Usage (Express)
 ```js
+var rabbitmq = require('./my-rabbitmq-client')
 var express = require('express')
 var format = require('util').format
 var uuid = require('node-uuid').v4
@@ -20,26 +21,36 @@ var stashback = require('stashback')({ timeout: 5000 })
 var app = express()
 
 app.get('/greet/:id', function(req, res, next) {
+
+    // Generate a unique id for the callback
     var callbackId = uuid()
-    stashback.stash(callbackId, function(err, user) {
+
+    // Define the callback
+    var callback = function(err, user) {
         if (err) return next(err)
         res.send(format('Hello %s', user.name))
-    }, function(err) {
+    }
+
+    // Stash the callback for later execution
+    stashback.stash(callbackId, callback, function(err) {
+
+        // An error will occur if you've used a duplicate callbackId.
         if (err) return next(err)
-        publish({ callbackId: callbackId, userId: req.params.id })
+
+        // Publish the message to the ESB, requesting user for the specified id. Using rabbitmq as an example.
+        rabbitmq.publish({ callbackId: callbackId, userId: req.params.id })
     })
 })
 
 app.listen(3000)
 
 
-function publish(message) {
-    // Publish the message to the ESB
-}
-
 function onMessage(message) {
-    // Receive the response from the ESB, unstash the callback and invoke it with the message data
+
+    // When we receive the user response unstash the callback using the callbackId specified in the message
     stashback.unstash(message.callbackId, function(err, callback) {
+
+        // Execute the callback passing it the user object (the callback will be a no-op if something went wrong)
         callback(err, message.user)
     })
 }
@@ -56,7 +67,7 @@ Attempting to 'stash' multiple callbacks with the same id results in an error. A
 ```js
 stashback.unstash('never-stashed-or-expired', function(err, callback) {
     assert.equal(err.message, 'Unknown key: never-stashed-or-expired')
-    assert.equal(typeof x, 'function')
+    assert.equal(typeof callback, 'function')
 })
 ```
 
