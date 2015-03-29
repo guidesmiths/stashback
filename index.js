@@ -128,7 +128,7 @@ module.exports = function(overrides) {
         /**
          * Unstashes all callbacks for execution
          * @param {Object}   options
-         * @param {callback} next                      Callback which will be invoked with the error object and the unstashed callback (or no-op function if the callback was not found or has expired).
+         * @param {callback} next                      Callback which will be invoked with the error object and an array of unstashed callbacks.
          */
         unstashAll: unstashAll,
 

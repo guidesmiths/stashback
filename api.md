@@ -62,7 +62,7 @@ Unstashes all callbacks for execution
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> |  |
-| next | <code>callback</code> | Callback which will be invoked with the error object and the unstashed callback (or no-op function if the callback was not found or has expired). |
+| next | <code>callback</code> | Callback which will be invoked with the error object and an array of unstashed callbacks. |
 
 <a name="module_stashback--module.exports..stats"></a>
 #### module.exports~stats ⇒ <code>Object</code>
