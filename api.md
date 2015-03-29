@@ -7,6 +7,7 @@ A library for stashing and retrieving callbacks
   * [module.exports(options)](#exp_module_stashback--module.exports) ⏏
     * [~stash](#module_stashback--module.exports..stash)
     * [~unstash](#module_stashback--module.exports..unstash)
+    * [~unstashAll](#module_stashback--module.exports..unstashAll)
     * [~stats](#module_stashback--module.exports..stats) ⇒ <code>Object</code>
 
 <a name="exp_module_stashback--module.exports"></a>
@@ -50,6 +51,17 @@ Unstashes a callback for execution
 | key | <code>String</code> | The callback id |
 | options | <code>Object</code> |  |
 | options.onUnknownKey | <code>function</code> | Function to be executed when instructed to unstash an unknown (or expired) key. Will be invoked with the key and next parameters. |
+| next | <code>callback</code> | Callback which will be invoked with the error object and the unstashed callback (or no-op function if the callback was not found or has expired). |
+
+<a name="module_stashback--module.exports..unstashAll"></a>
+#### module.exports~unstashAll
+Unstashes all callbacks for execution
+
+**Kind**: inner property of <code>[module.exports](#exp_module_stashback--module.exports)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> |  |
 | next | <code>callback</code> | Callback which will be invoked with the error object and the unstashed callback (or no-op function if the callback was not found or has expired). |
 
 <a name="module_stashback--module.exports..stats"></a>
