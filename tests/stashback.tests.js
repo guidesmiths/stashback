@@ -9,11 +9,12 @@ var it = redtape({
         var stashback = require('..')({ timeout: 500 })
         var stash = _.curry(stashback.stash)
         var unstash = _.curry(stashback.unstash)
-        next(null, stash, unstash, stashback.stats)
+        var unstashAll = _.curry(stashback.unstashAll)
+        next(null, stash, unstash, unstashAll, stashback.stats)
     }
 });
 
-it('should stash callbacks', function(test, stash, unstash, stats) {
+it('should stash callbacks', function(test, stash, unstash, unstashAll, stats) {
     test.plan(2)
     stash('key', callback, {}, function(err) {
         test.error(err)
@@ -21,11 +22,11 @@ it('should stash callbacks', function(test, stash, unstash, stats) {
     })
 })
 
-it('should unstash callbacks', function(test, stash, unstash, stats) {
+it('should unstash callbacks', function(test, stash, unstash, unstashAll, stats) {
     test.plan(3)
     async.waterfall([
         stash('key', callback, {}),
-        unstash('key', unstash)
+        unstash('key', {})
     ], function(err, unstashed) {
         test.error(err)
         test.equal(unstashed, callback)
@@ -33,7 +34,21 @@ it('should unstash callbacks', function(test, stash, unstash, stats) {
     })
 })
 
-it('should reject duplicate keys', function(test, stash, unstash, stats) {
+it('should unstash all callbacks', function(test, stash, unstash, unstashAll, stats) {
+    test.plan(3)
+    async.waterfall([
+        stash('key1', callback, {}),
+        stash('key2', callback, {}),
+        stash('key3', callback, {}),
+        unstashAll({})
+    ], function(err, unstashed) {
+        test.error(err)
+        test.equal(unstashed.length, 3)
+        test.equal(stats().stashed, 0)
+    })
+})
+
+it('should reject duplicate keys', function(test, stash, unstash, unstashAll, stats) {
     test.plan(2)
     async.series([
         stash('key', callback, {}),
@@ -44,7 +59,7 @@ it('should reject duplicate keys', function(test, stash, unstash, stats) {
     })
 })
 
-it('should unstash an unknown key', function(test, stash, unstash, stats) {
+it('should unstash an unknown key', function(test, stash, unstash, unstashAll, stats) {
     test.plan(3)
     async.waterfall([
         unstash('key', {})
@@ -55,7 +70,7 @@ it('should unstash an unknown key', function(test, stash, unstash, stats) {
     })
 })
 
-it('should expire callbacks after the stash timeout', function(test, stash, unstash, stats) {
+it('should expire callbacks after the stash timeout', function(test, stash, unstash, unstashAll, stats) {
     test.plan(6)
 
     var callback = function(err) {
@@ -75,7 +90,7 @@ it('should expire callbacks after the stash timeout', function(test, stash, unst
     })
 })
 
-it('should expire callbacks after the global timeout', function(test, stash, unstash, stats) {
+it('should expire callbacks after the global timeout', function(test, stash, unstash, unstashAll, stats) {
     test.plan(6)
 
     var callback = function(err) {
@@ -95,7 +110,7 @@ it('should expire callbacks after the global timeout', function(test, stash, uns
     })
 })
 
-it('should not leak memory', function(test, stash, unstash, stats) {
+it('should not leak memory', function(test, stash, unstash, unstashAll, stats) {
 
     test.plan(11)
 

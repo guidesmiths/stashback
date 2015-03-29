@@ -45,6 +45,15 @@ module.exports = function(overrides) {
         next(null, remove(key).callback)
     }
 
+    function unstashAll(overrides, next) {
+        if (arguments.length === 1) return unstashAll({}, arguments[1])
+
+        next(null, _.reduce(vault, function(callbacks, callback, key) {
+            debug('Unstashing', key)
+            return callbacks.concat(remove(key))
+        }, []))
+    }
+
     function add(key, callback, options) {
         vault[key] = {
             callback: callback,
@@ -115,6 +124,13 @@ module.exports = function(overrides) {
          * @param {callback} next                      Callback which will be invoked with the error object and the unstashed callback (or no-op function if the callback was not found or has expired).
          */
         unstash: unstash,
+
+        /**
+         * Unstashes all callbacks for execution
+         * @param {Object}   options
+         * @param {callback} next                      Callback which will be invoked with the error object and the unstashed callback (or no-op function if the callback was not found or has expired).
+         */
+        unstashAll: unstashAll,
 
         /**
          * Provides statistics
