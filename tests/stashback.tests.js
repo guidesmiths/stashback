@@ -1,7 +1,6 @@
 var redtape = require('redtape')
 var async = require('async')
 var _ = require('lodash')
-var memwatch = require('memwatch-next')
 var callback = function() {}
 
 var it = redtape({
@@ -110,21 +109,4 @@ it('should expire callbacks after the global timeout', function(test, stash, uns
     })
 })
 
-it('should not leak memory', function(test, stash, unstash, unstashAll, stats) {
-
-    test.plan(11)
-
-    memwatch.on('stats', function(stats) {
-        test.equal(stats.usage_trend, 0)
-    })
-
-    async.times(1000, function(index, next) {
-        stash(index, callback, {}, next)
-        if (index % 100 === 0) {
-            global.gc()
-        }
-    }, function(err) {
-        test.error(err)
-    })
-})
 
