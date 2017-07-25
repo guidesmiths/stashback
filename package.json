@@ -19,17 +19,16 @@
   "author": "Stephen Cresswell",
   "license": "ISC",
   "devDependencies": {
-    "async": "^0.9.0",
-    "chance": "^0.7.3",
-    "express": "^4.12.3",
+    "async": "^2.5.0",
+    "chance": "^1.0.10",
+    "express": "^4.15.3",
     "memwatch-next": "^0.3.0",
-    "node-uuid": "^1.4.3",
     "redtape": "^1.0.0",
-    "tape": "^3.5.0"
+    "tape": "^4.7.0"
   },
   "dependencies": {
-    "debug": "^2.1.3",
-    "lodash": "^3.5.0"
+    "debug": "^2.6.8",
+    "lodash": "^4.17.4"
   },
   "directories": {
     "example": "example",

@@ -18,7 +18,7 @@ it('should support custom duplicate key behaviour', function(test) {
         stash('key', callback, {}),
         stash('key', callback, {})
     ], function(err) {
-        test.equal(err, undefined)
+        test.equal(err, null)
     })
 })
 
