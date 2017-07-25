@@ -1,6 +1,6 @@
 {
   "name": "stashback",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Stashes callbacks for later execution",
   "main": "index.js",
   "scripts": {
