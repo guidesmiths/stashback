@@ -9,7 +9,7 @@
     "istanbul": "node --expose-gc node_modules/.bin/istanbul cover --report html --report lcov tests/testsuite.js",
     "codeclimate": "npm run istanbul && source .codeclimate && codeclimate-test-reporter < coverage/lcov.info",
     "lint": "eslint .",
-    "prepush": "npm run lint && npm test",
+    "prepush": "npm run lint && npm test && npm run codeclimate",
     "doc": "jsdoc2md index.js > api.md"
   },
   "keywords": [
@@ -24,6 +24,7 @@
   "devDependencies": {
     "async": "^2.5.0",
     "chance": "^1.0.10",
+    "codeclimate-test-reporter": "^0.5.0",
     "eslint": "^4.3.0",
     "eslint-config-imperative": "^2.0.1",
     "eslint-plugin-imperative": "^2.0.0",
@@ -49,5 +50,5 @@
   "bugs": {
     "url": "https://github.com/guidesmiths/stashback/issues"
   },
-  "homepage": "https://github.com/guidesmiths/stashback"
+  "homepage": "https://guidesmiths.github.io/stashback/"
 }
