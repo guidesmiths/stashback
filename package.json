@@ -22,7 +22,7 @@
     "async": "^0.9.0",
     "chance": "^0.7.3",
     "express": "^4.12.3",
-    "memwatch": "^0.2.2",
+    "memwatch-next": "^0.3.0",
     "node-uuid": "^1.4.3",
     "redtape": "^1.0.0",
     "tape": "^3.5.0"

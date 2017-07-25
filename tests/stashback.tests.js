@@ -1,7 +1,7 @@
 var redtape = require('redtape')
 var async = require('async')
 var _ = require('lodash')
-var memwatch = require('memwatch')
+var memwatch = require('memwatch-next')
 var callback = function() {}
 
 var it = redtape({
