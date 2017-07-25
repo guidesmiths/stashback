@@ -66,6 +66,7 @@ it('should unstash an unknown key', function(test, stash, unstash, unstashAll, s
         test.assert(err)
         test.equal(err.message, "Unknown key: key")
         test.assert(_.isFunction(unstashed))
+        unstashed()
     })
 })
 
