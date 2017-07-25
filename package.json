@@ -6,7 +6,10 @@
   "scripts": {
     "test": "node --expose-gc tests/testsuite.js",
     "example": "( cd example; node app.js )",
-    "lint": "eslint index.js",
+    "istanbul": "node --expose-gc node_modules/.bin/istanbul cover --report html --report lcov tests/testsuite.js",
+    "codeclimate": "npm run istanbul && source .codeclimate && codeclimate-test-reporter < coverage/lcov.info",
+    "lint": "eslint .",
+    "prepush": "npm run lint && npm test",
     "doc": "jsdoc2md index.js > api.md"
   },
   "keywords": [
@@ -25,6 +28,8 @@
     "eslint-config-imperative": "^2.0.1",
     "eslint-plugin-imperative": "^2.0.0",
     "express": "^4.15.3",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
     "memwatch-next": "^0.3.0",
     "redtape": "^1.0.0",
     "tape": "^4.7.0"
