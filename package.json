@@ -32,7 +32,8 @@
     "istanbul": "^0.4.5",
     "memwatch-next": "^0.3.0",
     "redtape": "^1.0.0",
-    "tape": "^4.7.0"
+    "tape": "^4.7.0",
+    "uuid": "^3.1.0"
   },
   "dependencies": {
     "debug": "^2.6.8",

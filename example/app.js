@@ -1,7 +1,7 @@
 var stashback = require('..')()
 var express = require('express')
 var format = require('util').format
-var uuid = require('node-uuid').v4
+var uuid = require('uuid').v4
 var exchange = require('./exchange')(stashback)
 
 var app = express()
