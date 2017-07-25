@@ -21,6 +21,9 @@
   "devDependencies": {
     "async": "^2.5.0",
     "chance": "^1.0.10",
+    "eslint": "^4.3.0",
+    "eslint-config-imperative": "^2.0.1",
+    "eslint-plugin-imperative": "^2.0.0",
     "express": "^4.15.3",
     "memwatch-next": "^0.3.0",
     "redtape": "^1.0.0",
