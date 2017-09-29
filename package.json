@@ -36,7 +36,7 @@
     "uuid": "^3.1.0"
   },
   "dependencies": {
-    "debug": "^3.0.1",
+    "debug": "^3.1.0",
     "lodash": "^4.17.4"
   },
   "directories": {

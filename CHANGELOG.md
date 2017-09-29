@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.1]
+### [Updated]
+- Dependencies
+
 ## [1.0.0]
 ### [Added]
 - Code Coverage
