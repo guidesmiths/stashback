@@ -7,7 +7,7 @@
     "test": "node --expose-gc tests/testsuite.js",
     "example": "( cd example; node app.js )",
     "istanbul": "node --expose-gc node_modules/.bin/istanbul cover --report html --report lcov tests/testsuite.js",
-    "codeclimate": "npm run istanbul && source .codeclimate && codeclimate-test-reporter < coverage/lcov.info",
+    "codeclimate": "npm run istanbul && source .codeclimate",
     "lint": "eslint .",
     "doc": "jsdoc2md index.js > api.md",
     "precommit": "npm run lint && npm test",
@@ -23,23 +23,22 @@
   "author": "Stephen Cresswell",
   "license": "ISC",
   "devDependencies": {
-    "async": "^2.5.0",
-    "chance": "^1.0.10",
-    "codeclimate-test-reporter": "^0.5.0",
-    "eslint": "^4.3.0",
+    "async": "^2.6.0",
+    "chance": "^1.0.16",
+    "eslint": "^4.19.1",
     "eslint-config-imperative": "^2.0.1",
     "eslint-plugin-imperative": "^2.0.0",
-    "express": "^4.15.3",
+    "express": "^4.16.3",
     "husky": "^0.14.3",
     "istanbul": "^0.4.5",
-    "jsdoc-to-markdown": "^3.0.3",
+    "jsdoc-to-markdown": "^3.0.4",
     "redtape": "^1.0.0",
-    "tape": "^4.7.0",
-    "uuid": "^3.1.0"
+    "tape": "^4.9.0",
+    "uuid": "^3.2.1"
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.10"
   },
   "directories": {
     "example": "example",
