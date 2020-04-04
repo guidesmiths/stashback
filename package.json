@@ -9,7 +9,7 @@
     "doc": "jsdoc2md index.js > api.md",
     "example": "( cd example; node app.js )",
     "lint": "eslint .",
-    "test": "nyc --reporter text-summary mocha ./test --exit"
+    "test": "nyc node --expose-gc tests/testsuite.js | tap-spec"
   },
   "keywords": [
     "callback",
@@ -31,6 +31,8 @@
     "jsdoc-to-markdown": "^5.0.3",
     "nyc": "^15.0.1",
     "redtape": "^1.0.0",
+    "tap-nyc": "^1.0.3",
+    "tap-spec": "^5.0.0",
     "tape": "^4.13.2",
     "uuid": "^7.0.3"
   },
