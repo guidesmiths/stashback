@@ -4,6 +4,10 @@
 ### Updated
 - Dependencies
 
+## 1.1.0
+### Updated
+- Dependencies
+
 ## 1.0.3
 ### Updated
 - Dependencies

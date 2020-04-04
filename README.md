@@ -59,7 +59,6 @@ function onMessage(message) {
         callback(err, message.user)
     })
 }
-
 ```
 
 ### Callback Expiry
