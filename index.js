@@ -1,6 +1,7 @@
 'use strict';
 var debug = require('debug')('stashback')
-var _ = require('lodash')
+var _defaults = require('lodash.defaults')
+var _reduce = require('lodash.reduce')
 
 /**
  * A library for stashing and retrieving callbacks
@@ -20,7 +21,7 @@ module.exports = function(overrides) {
 
     var vault = {}
     var expired = 0
-    var defaults = _.defaults(overrides || {}, {
+    var defaults = _defaults(overrides || {}, {
         onUnknownKey: onUnknownKey,
         onDuplicateKey: onDuplicateKey,
         onExpiry: onExpiry
@@ -30,7 +31,7 @@ module.exports = function(overrides) {
         if (arguments.length === 3) return stash(key, callback, {}, arguments[2])
         debug('Stashing', key)
 
-        var options = _.defaults(overrides, defaults)
+        var options = _defaults(overrides, defaults)
         if (exists(key)) return options.onDuplicateKey(key, next)
         add(key, callback, options)
         next(null)
@@ -40,7 +41,7 @@ module.exports = function(overrides) {
         if (arguments.length === 2) return unstash(key, {}, arguments[1])
         debug('Unstashing', key)
 
-        var options = _.defaults(overrides, defaults)
+        var options = _defaults(overrides, defaults)
         if (!exists(key)) return options.onUnknownKey(key, next)
         next(null, remove(key).callback)
     }
@@ -48,7 +49,7 @@ module.exports = function(overrides) {
     function unstashAll(overrides, next) {
         if (arguments.length === 1) return unstashAll({}, arguments[1])
 
-        next(null, _.reduce(vault, function(callbacks, callback, key) {
+        next(null, _reduce(vault, function(callbacks, callback, key) {
             debug('Unstashing', key)
             return callbacks.concat(remove(key))
         }, []))

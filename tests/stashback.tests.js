@@ -1,14 +1,14 @@
 var redtape = require('redtape')
 var async = require('async')
-var _ = require('lodash')
+var _curry = require('lodash.curry')
 var callback = function() {}
 
 var it = redtape({
     beforeEach: function (next) {
         var stashback = require('..')({ timeout: 500 })
-        var stash = _.curry(stashback.stash)
-        var unstash = _.curry(stashback.unstash)
-        var unstashAll = _.curry(stashback.unstashAll)
+        var stash = _curry(stashback.stash)
+        var unstash = _curry(stashback.unstash)
+        var unstashAll = _curry(stashback.unstashAll)
         next(null, stash, unstash, unstashAll, stashback.stats)
     }
 });
@@ -65,7 +65,7 @@ it('should unstash an unknown key', function(test, stash, unstash, unstashAll, s
     ], function(err, unstashed) {
         test.assert(err)
         test.equal(err.message, "Unknown key: key")
-        test.assert(_.isFunction(unstashed))
+        test.equal(typeof unstashed, 'function')
         unstashed()
     })
 })

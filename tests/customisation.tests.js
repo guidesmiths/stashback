@@ -1,6 +1,6 @@
 var redtape = require('redtape')
 var async = require('async')
-var _ = require('lodash')
+var _curry = require('lodash.curry')
 var callback = function() {}
 
 var it = redtape();
@@ -12,7 +12,7 @@ it('should support custom duplicate key behaviour', function(test) {
         test.equal(key, 'key')
         next()
     }})
-    var stash = _.curry(stashback.stash)
+    var stash = _curry(stashback.stash)
 
     async.series([
         stash('key', callback, {}),
