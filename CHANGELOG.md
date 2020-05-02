@@ -1,10 +1,10 @@
 # Change Log
 
-## 1.1.1
+## 1.1.2
 ### Updated
 - Replace lodash with individual module equivalents
 
-## 1.1.0
+## 1.1.1
 ### Updated
 - Dependencies
 
