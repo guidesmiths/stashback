@@ -47,7 +47,7 @@ module.exports = function(overrides) {
     }
 
     function unstashAll(overrides, next) {
-        if (arguments.length === 1) return unstashAll({}, arguments[1])
+        if (arguments.length === 1) return unstashAll({}, arguments[0])
 
         next(null, _reduce(vault, function(callbacks, callback, key) {
             debug('Unstashing', key)
