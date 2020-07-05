@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.3
+### Updated
+- Fixed missing callback
+
 ## 1.1.2
 ### Updated
 - Replace lodash with individual module equivalents
