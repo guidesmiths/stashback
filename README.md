@@ -1,12 +1,12 @@
 ## Stashback
+[![CI](https://github.com/guidesmiths/stashback/actions/workflows/ci.yml/badge.svg)](https://github.com/guidesmiths/stashback/actions/workflows/ci.yml)
+[![CD](https://github.com/guidesmiths/stashback/actions/workflows/cd.yml/badge.svg)](https://github.com/guidesmiths/stashback/actions/workflows/cd.yml)
 [![NPM version](https://img.shields.io/npm/v/stashback.svg?style=flat-square)](https://www.npmjs.com/package/stashback)
 [![NPM downloads](https://img.shields.io/npm/dm/stashback.svg?style=flat-square)](https://www.npmjs.com/package/stashback)
 [![Build Status](https://img.shields.io/travis/guidesmiths/stashback/master.svg)](https://travis-ci.org/guidesmiths/stashback)
 [![Code Climate](https://codeclimate.com/github/guidesmiths/stashback/badges/gpa.svg)](https://codeclimate.com/github/guidesmiths/stashback)
 [![Test Coverage](https://codeclimate.com/github/guidesmiths/stashback/badges/coverage.svg)](https://codeclimate.com/github/guidesmiths/stashback/coverage)
 [![Code Style](https://img.shields.io/badge/code%20style-imperative-brightgreen.svg)](https://github.com/guidesmiths/eslint-config-imperative)
-[![Dependency Status](https://david-dm.org/guidesmiths/stashback.svg)](https://david-dm.org/guidesmiths/stashback)
-[![devDependencies Status](https://david-dm.org/guidesmiths/stashback/dev-status.svg)](https://david-dm.org/guidesmiths/stashback?type=dev)
 
 Stashback is a library for stashing and retrieving callbacks in a decoupled request/response workflow. Its primary use case is to enable code within an http request/response sequence to publish a message to an ESB, e.g. [RabbitMQ](http://www.rabbitmq.com/) and wait for a reply.
 
