@@ -39,7 +39,7 @@
     "zunit": "^3.2.1"
   },
   "dependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.3.4"
   },
   "directories": {
     "example": "example",
