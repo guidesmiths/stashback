@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.0.1
+
+- Audit fix
+
 ## 2.0.0
 
 - Drop support for node below version 10
