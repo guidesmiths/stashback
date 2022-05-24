@@ -53,7 +53,7 @@ module.exports = (overrides) => {
 
   function expire(key, timeout) {
     return setTimeout(() => {
-      debug('Expiring key:', key);
+      debug('Expiring:', key);
       expired++;
       const entry = remove(key);
       entry.options.onExpiry(key, entry.callback);
