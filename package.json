@@ -12,6 +12,9 @@
     "test": "zUnit",
     "prepare": "husky install"
   },
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "keywords": [
     "callback",
     "manager",
@@ -37,9 +40,7 @@
     "zunit": "^3.2.1"
   },
   "dependencies": {
-    "debug": "^4.1.1",
-    "lodash.defaults": "^4.2.0",
-    "lodash.reduce": "^4.6.0"
+    "debug": "^4.1.1"
   },
   "directories": {
     "example": "example",

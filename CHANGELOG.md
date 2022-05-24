@@ -1,7 +1,9 @@
 # Change Log
 
-## 1.2.0
+## 2.0.0
 
+- Drop support for node below version 10
+- Modernise javascript
 - Migrate to zUnit
 - Migrate to prettier
 - Remove jsdoc

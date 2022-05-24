@@ -1,21 +1,23 @@
-var debug = require('debug')('stashback');
-var _defaults = require('lodash.defaults');
-var _reduce = require('lodash.reduce');
+const debug = require('debug')('stashback');
 
-module.exports = function (overrides) {
-  var vault = {};
-  var expired = 0;
-  var defaults = _defaults(overrides || {}, {
-    onUnknownKey: onUnknownKey,
-    onDuplicateKey: onDuplicateKey,
-    onExpiry: onExpiry,
-  });
+module.exports = (overrides) => {
+  const vault = {};
+  let expired = 0;
+  const defaults = Object.assign(
+    {},
+    {
+      onUnknownKey,
+      onDuplicateKey,
+      onExpiry,
+    },
+    overrides
+  );
 
   function stash(key, callback, overrides, next) {
     if (arguments.length === 3) return stash(key, callback, {}, arguments[2]);
     debug('Stashing', key);
 
-    var options = _defaults(overrides, defaults);
+    const options = Object.assign({}, defaults, overrides);
     if (exists(key)) return options.onDuplicateKey(key, next);
     add(key, callback, options);
     next(null);
@@ -25,7 +27,7 @@ module.exports = function (overrides) {
     if (arguments.length === 2) return unstash(key, {}, arguments[1]);
     debug('Unstashing', key);
 
-    var options = _defaults(overrides, defaults);
+    const options = Object.assign({}, defaults, overrides);
     if (!exists(key)) return options.onUnknownKey(key, next);
     next(null, remove(key).callback);
   }
@@ -33,17 +35,12 @@ module.exports = function (overrides) {
   function unstashAll(overrides, next) {
     if (arguments.length === 1) return unstashAll({}, arguments[0]);
 
-    next(
-      null,
-      _reduce(
-        vault,
-        function (callbacks, callback, key) {
-          debug('Unstashing', key);
-          return callbacks.concat(remove(key));
-        },
-        []
-      )
-    );
+    const results = Object.keys(vault).reduce((callbacks, key) => {
+      debug('Unstashing', key);
+      return callbacks.concat(remove(key));
+    }, []);
+
+    next(null, results);
   }
 
   function add(key, callback, options) {
@@ -55,16 +52,16 @@ module.exports = function (overrides) {
   }
 
   function expire(key, timeout) {
-    return setTimeout(function () {
+    return setTimeout(() => {
       debug('Expiring key:', key);
       expired++;
-      var entry = remove(key);
+      const entry = remove(key);
       entry.options.onExpiry(key, entry.callback);
     }, timeout);
   }
 
   function remove(key) {
-    var entry = vault[key];
+    const entry = vault[key];
     delete vault[key];
     clearTimeout(entry.timeout);
     return entry;
@@ -79,7 +76,7 @@ module.exports = function (overrides) {
   }
 
   function onUnknownKey(key, next) {
-    return next(new Error('Unknown key: ' + key), function () {
+    return next(new Error('Unknown key: ' + key), () => {
       debug('Unknown key:', key);
     });
   }
@@ -96,9 +93,9 @@ module.exports = function (overrides) {
   }
 
   return {
-    stash: stash,
-    unstash: unstash,
-    unstashAll: unstashAll,
-    stats: stats,
+    stash,
+    unstash,
+    unstashAll,
+    stats,
   };
 };

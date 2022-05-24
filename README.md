@@ -20,11 +20,10 @@ npm install stashback
 ### Example Usage (Express)
 
 ```js
-var rabbitmq = require('./my-rabbitmq-client');
-var express = require('express');
-var format = require('util').format;
-var uuid = require('node-uuid').v4;
-var stashback = require('stashback')({ timeout: 5000 });
+const rabbitmq = require('./my-rabbitmq-client');
+const express = require('express');
+const { v4: uuid } = require('uuid');
+const stashback = require('stashback')({ timeout: 5000 });
 
 var app = express();
 
@@ -33,18 +32,18 @@ app.get('/greet/:id', function (req, res, next) {
   var callbackId = uuid();
 
   // Define the callback
-  var callback = function (err, user) {
+  var callback = (err, user) => {
     if (err) return next(err);
-    res.send(format('Hello %s', user.name));
+    res.send(`Hello ${user.name}`);
   };
 
   // Stash the callback for later execution
-  stashback.stash(callbackId, callback, function (err) {
+  stashback.stash(callbackId, callback, (err) => {
     // An error will occur if you've used a duplicate callbackId.
     if (err) return next(err);
 
     // Publish the message to the ESB, requesting user for the specified id. Using rabbitmq as an example.
-    rabbitmq.publish({ callbackId: callbackId, userId: req.params.id });
+    rabbitmq.publish({ callbackId, userId: req.params.id });
   });
 });
 
@@ -52,9 +51,9 @@ app.listen(3000);
 
 function onMessage(message) {
   // When we receive the user response unstash the callback using the callbackId specified in the message
-  stashback.unstash(message.callbackId, function (err, callback) {
+  stashback.unstash(message.callbackId, (err, cb) => {
     // Execute the callback passing it the user object (the callback will be a no-op if something went wrong)
-    callback(err, message.user);
+    cb(err, message.user);
   });
 }
 ```

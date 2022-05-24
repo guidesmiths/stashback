@@ -1,23 +1,22 @@
-var stashback = require('..')();
-var express = require('express');
-var format = require('util').format;
-var uuid = require('uuid').v4;
-var exchange = require('./exchange')(stashback);
+const stashback = require('..')();
+const express = require('express');
+const { v4: uuid } = require('uuid');
+const exchange = require('./exchange')(stashback);
 
-var app = express();
+const app = express();
 
-app.get('/greet/:id', function (req, res, next) {
-  var callbackId = uuid();
+app.get('/greet/:id', (req, res, next) => {
+  const callbackId = uuid();
   stashback.stash(
     callbackId,
-    function (err, user) {
+    (err, user) => {
       if (err) return next(err);
-      res.send(format('Hello %s\n', user.name));
+      res.send(`Hello ${user.name}`);
     },
     { timeout: req.query.timeout },
-    function (err) {
+    (err) => {
       if (err) return next(err);
-      exchange.publish({ callbackId: callbackId, userId: req.params.id });
+      exchange.publish({ callbackId, userId: req.params.id });
     }
   );
 });
