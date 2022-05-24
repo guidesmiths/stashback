@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "codeclimate": "(test -e .codeclimate && npm run coverage && source .codeclimate && codeclimate-test-reporter < coverage/lcov.info) || echo skipping codeclimate",
-    "coverage": "nyc report --reporter lcov --reporter html",
+    "coverage": "nyc --report html --reporter lcov --reporter text-summary zUnit",
     "doc": "jsdoc2md index.js > api.md",
     "example": "( cd example; node app.js )",
     "lint": "eslint .",
-    "test": "nyc node --expose-gc tests/testsuite.js | tap-spec"
+    "test": "zUnit"
   },
   "keywords": [
     "callback",
@@ -31,11 +31,8 @@
     "jsdoc-to-markdown": "^5.0.3",
     "lodash.curry": "^4.1.1",
     "nyc": "^15.0.1",
-    "redtape": "^1.0.0",
-    "tap-nyc": "^1.0.3",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.13.2",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "zunit": "^3.2.1"
   },
   "dependencies": {
     "debug": "^4.1.1",
@@ -59,5 +56,8 @@
       "pre-commit": "npm run lint && npm test",
       "pre-push": "npm run codeclimate"
     }
+  },
+  "zUnit": {
+    "pollute": true
   }
 }

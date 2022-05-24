@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.2.0
+- Use zUnit
+
 ## 1.1.3
 ### Updated
 - Fixed missing callback
