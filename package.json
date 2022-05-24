@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "test": "zUnit",
+    "prettier": "prettier --check .",
     "prepare": "husky install"
   },
   "engines": {
