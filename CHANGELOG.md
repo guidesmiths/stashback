@@ -4,6 +4,7 @@
 
 - Migrate to zUnit
 - Migrate to prettier
+- Remove jsdoc
 
 ## 1.1.3
 
