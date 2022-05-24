@@ -9,7 +9,9 @@
     "doc": "jsdoc2md index.js > api.md",
     "example": "( cd example; node app.js )",
     "lint": "eslint .",
-    "test": "zUnit"
+    "lint-staged": "lint-staged",
+    "test": "zUnit",
+    "prepare": "husky install"
   },
   "keywords": [
     "callback",
@@ -23,14 +25,16 @@
   "devDependencies": {
     "async": "^3.2.0",
     "chance": "^1.1.4",
-    "eslint": "^6.8.0",
-    "eslint-config-imperative": "^3.0.0",
-    "eslint-plugin-imperative": "^3.0.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "express": "^4.17.1",
-    "husky": "^4.2.3",
+    "husky": "^8.0.1",
     "jsdoc-to-markdown": "^5.0.3",
+    "lint-staged": "^12.4.2",
     "lodash.curry": "^4.1.1",
     "nyc": "^15.0.1",
+    "prettier": "2.6.2",
     "uuid": "^7.0.3",
     "zunit": "^3.2.1"
   },
@@ -51,11 +55,8 @@
     "url": "https://github.com/guidesmiths/stashback/issues"
   },
   "homepage": "https://guidesmiths.github.io/stashback/",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm test",
-      "pre-push": "npm run codeclimate"
-    }
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "zUnit": {
     "pollute": true
